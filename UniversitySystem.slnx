@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="UniversitySystem.API/UniversitySystem.API.csproj" />
+  <Project Path="UniversitySystem.Core/UniversitySystem.Core.csproj" />
+  <Project Path="UniversitySystem.Data/UniversitySystem.Data.csproj" />
+  <Project Path="UniversitySystem.infrastructure/UniversitySystem.infrastructure.csproj" />
+  <Project Path="UniversitySystem.Service/UniversitySystem.Service.csproj" />
+</Solution>
