@@ -1,12 +1,17 @@
-
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
+using UniversitySystem.Core;
+using UniversitySystem.infrastructure;
+using UniversitySystem.infrastructure.Data;
+using UniversitySystem.Service;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -16,6 +21,16 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1"
     });
 });
+#region Dependancy Enjection
+
+//builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddInfrastructureDependencies();
+builder.Services.AddServiceDependencies();
+builder.Services.AddCoreDependencies();
+
+#endregion
+builder.Services.AddDbContext<ApplicationDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
 var app = builder.Build();
@@ -34,3 +49,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
